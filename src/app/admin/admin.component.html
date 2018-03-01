@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="admin-content">
+    <label for="pending_posts" class="section-label">Articles en attente d'approbation</label>
+    <div class="posts_admin" id="pending_posts">
+      <table class="table">
+        <thead>
+        <tr>
+          <th class="title">Titre</th>
+          <th class="date">Date</th>
+          <th class="user">Utilisateur</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let post of pending; let i = index">
+          <td *ngIf="i < 4"><a routerLink="/posts/{{post.post_id}}/view">{{post.title}}</a></td>
+          <td *ngIf="i < 4">{{post.post_date | date}}</td>
+          <td *ngIf="i < 4"><a routerLink="/profiles/{{post.USERS_user_id}}/view">{{userById(post.USERS_user_id)}}</a></td>
+          <td colspan="3" *ngIf="i === 5" style="text-align: center;"><a routerLink="/admin/pending">Tout voir</a></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <label for="declined_posts" class="section-label">Articles refusés</label>
+    <div class="posts_admin" id="declined_posts">
+      <table class="table">
+        <thead>
+        <tr>
+          <th class="title">Titre</th>
+          <th class="date">Date</th>
+          <th class="user">Utilisateur</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let post of declined; let i = index;">
+          <td *ngIf="i < 4"><a routerLink="/posts/{{post.post_id}}/view">{{post.title}}</a></td>
+          <td *ngIf="i < 4">{{post.post_date | date}}</td>
+          <td *ngIf="i < 4"><a routerLink="/profiles/{{post.USERS_user_id}}/view">{{userById(post.USERS_user_id)}}</a></td>
+          <td colspan="3" *ngIf="i === 5" style="text-align: center;"><a routerLink="/admin/pending">Tout voir</a></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <label for="categories" class="section-label">Catégories</label>
+    <div class="posts_admin" id="categories">
+      <div class="row">
+        <div class="col-6 available">
+          <label class="label-underline">Liste des catégories disponibles</label>
+          <i class="fa fa-plus clickable-icon" style="color: dodgerblue;" ng-click="showPrompt($event)"></i>
+          <i class="fa fa-times clickable-icon" style="color: red;" ng-click="showConfirm($event)"></i>
+        </div>
+        <div class="col-6 proposed">
+          <label class="label-underline">Liste des catégories proposées</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

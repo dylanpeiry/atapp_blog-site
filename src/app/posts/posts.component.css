@@ -1,0 +1,9 @@
+.card {
+    font-family: 'Josefin Sans', sans-serif;
+    min-width: 250px;
+    max-width: 250px;
+    margin-top: 10px;
+}
+.card > img {
+    max-height: 150px;
+}

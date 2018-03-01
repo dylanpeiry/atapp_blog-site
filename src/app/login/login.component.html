@@ -1,0 +1,12 @@
+<div class="login">
+    <mat-form-field>
+        <input [(ngModel)]="user.name" (ngModelChange)="inputChanged()" matInput placeholder="Nom d'utilisateur">
+    </mat-form-field>
+    <mat-form-field>
+        <input type="password" [(ngModel)]="user.pwd" (ngModelChange)="inputChanged()" matInput placeholder="Mot de passe">
+    </mat-form-field>
+    <mat-checkbox [(ngModel)]="user.stayLogged">Rester connecté</mat-checkbox>
+    <button mat-raised-button color="primary" (click)="logUser(user)" [disabled]="disabled">Connexion</button>
+    <mat-error *ngIf="invalidCredentials">Informations de connexion incorrectes</mat-error>
+</div>
+{{userLogged | json}}

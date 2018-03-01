@@ -1,0 +1,33 @@
+<div class="register">
+  <mat-form-field>
+    <input [(ngModel)]="newUser.firstName" (ngModelChange)="inputChanged()" matInput placeholder="Prénom" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input [(ngModel)]="newUser.lastName" (ngModelChange)="inputChanged()" matInput placeholder="Nom" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input [formControl]="username" [(ngModel)]="newUser.username" (ngModelChange)="inputChanged()"
+           matInput
+           placeholder="Nom d'utilisateur" required minlength="4">
+    <mat-error *ngIf="username.invalid">{{usernameError()}}</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input type="email" [formControl]="mail" [(ngModel)]="newUser.mail" (ngModelChange)="inputChanged()" matInput
+           placeholder="Email"
+           required>
+    <mat-error *ngIf="mail.invalid">{{mailError()}}</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input type="password" [(ngModel)]="newUser.password" (ngModelChange)="inputChanged()" matInput
+           placeholder="Mot de passe" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input type="password" [(ngModel)]="newUser.cPassword" (ngModelChange)="inputChanged()" matInput
+           placeholder="Confirmation du mot de passe" required>
+  </mat-form-field>
+  <mat-error *ngIf="error">{{error}}</mat-error>
+  <button mat-raised-button color="primary" [disabled]="registrationDisabled" (click)="buttonClick()
+">Inscription
+  </button>
+  <a style="color:green;">{{success}}</a>
+</div>

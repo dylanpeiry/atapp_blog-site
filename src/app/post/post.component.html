@@ -1,0 +1,89 @@
+<div *ngIf="action == 'view'">
+  <div *ngIf="post">
+    <mat-card class="post" id="{{'post#' + post.post_id}}">
+      <img src="http://material.angular.io/assets/img/examples/shiba2.jpg" mat-card-image>
+      <mat-card-title>{{post.title}}</mat-card-title>
+      <mat-card-content style="white-space: pre-line;">{{post.content}}</mat-card-content>
+      <mat-card-actions>
+        <ng-container *ngIf="userId == post.USERS_user_id">
+          <button mat-raised-button color="primary" routerLink="/posts/{{post.post_id}}/edit">Editer</button>
+          <button mat-raised-button color="warn" (click)="delete(post.post_id)">Supprimer</button>
+        </ng-container>
+      </mat-card-actions>
+      <mat-card-footer>Cet article à été publié le {{post.post_date | format}} // Dernière modification le
+        <a *ngIf="post.updated_at != null">{{post.updated_at | format}}</a> // Publié par <a
+          routerLink="">s0kke</a></mat-card-footer>
+    </mat-card>
+  </div>
+  <div *ngIf="!post">
+    erreur
+  </div>
+</div>
+<div *ngIf="action == 'edit'">
+  <!-- Edition de l'article -->
+  <div *ngIf="post" class="post">
+    <mat-form-field>
+      <input [(ngModel)]="post.title" #title matInput maxlength="50" placeholder="Titre de l'article"
+             (ngModelChange)="inputChanged()">
+      <mat-hint align="end">{{title.value.length}} / 50</mat-hint>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea [(ngModel)]="post.content" matInput placeholder="Contenu de l'article"
+                matTextareaAutosize (ngModelChange)="inputChanged()"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="edition_categories">
+      <mat-chip-list #chipList>
+        <ng-container *ngFor="let cat of categories">
+          <mat-chip [selectable]="selectable"
+                    [removable]="removable" (remove)="removeCat(cat)">
+            {{cat.category_name}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+        </ng-container>
+        <input placeholder="Catégories"
+               [matChipInputFor]="chipList"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="addOnBlur"
+               (matChipInputTokenEnd)="addCat($event)"/>
+      </mat-chip-list>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="edit(post.post_id, post.title, post.content)">
+      Editer
+    </button>
+    <button mat-raised-button routerLink="/posts/{{post.post_id}}/view">
+      Annuler
+    </button>
+    <a *ngIf="success" style="color: green">{{message}}</a>
+    <a *ngIf="!success" style="color:red">{{message}}</a>
+  </div>
+</div>
+<!-- Formulaire pour écrire un nouvel article-->
+<div *ngIf="url == 'new'">
+  <div class="post">
+    <mat-form-field>
+      <input [(ngModel)]="new_post.title" #title matInput maxlength="50" placeholder="Titre de l'article"
+             (ngModelChange)="inputChanged()">
+      <mat-hint align="end">{{title.value.length}} / 50</mat-hint>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea [(ngModel)]="new_post.content" matInput placeholder="Contenu de l'article"
+                matTextareaAutosize (ngModelChange)="inputChanged()"></textarea>
+    </mat-form-field>
+    <!-- Action pour l'administrateur -->
+    <button mat-raised-button color="primary" (click)="add(new_post.title,new_post.content)" [disabled]="!canPublish"
+            *ngIf="userRoleId == 2">
+      Publier l'article
+    </button>
+    <!-- Action pour les utilisateurs -->
+    <button mat-raised-button color="primary" (click)="submit(new_post.title,new_post.content)" [disabled]="!canPublish"
+            *ngIf="userRoleId == 1">
+      Proposer l'article
+    </button>
+    <a *ngIf="success" style="color: green">{{message}}</a>
+    <a *ngIf="!success" style="color:red">{{message}}</a>
+  </div>
+</div>
+
+
