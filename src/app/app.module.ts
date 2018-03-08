@@ -34,7 +34,8 @@ import {AuthService} from "./services/auth/auth.service";
 import {CookieService} from "angular2-cookie/core";
 import {CategoriesService} from "./services/categories/categories.service";
 import {FormatPipe} from "./pipes/format/format.pipe";
-import {FroalaEditorModule, FroalaViewModule} from "angular-froala-wysiwyg";
+import {RteComponent} from "./rte/rte.component";
+import {FroalaEditorModule,FroalaViewModule} from "angular-froala-wysiwyg";
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import {FroalaEditorModule, FroalaViewModule} from "angular-froala-wysiwyg";
     NavComponent,
     IndexComponent,
     LimitToPipe,
-    FormatPipe
+    FormatPipe,
+    RteComponent
   ],
   imports: [
     BrowserModule,

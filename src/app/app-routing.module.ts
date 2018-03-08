@@ -7,6 +7,7 @@ import {PostComponent} from "./post/post.component";
 import {AdminComponent} from "./admin/admin.component";
 import {PagenotfoundComponent} from "./pagenotfound/pagenotfound.component";
 import {IndexComponent} from "./index/index.component";
+import {RteComponent} from "./rte/rte.component";
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent
+  },
+  {
+    path: 'rte',
+    component: RteComponent
   },
   {
     path: '**',
