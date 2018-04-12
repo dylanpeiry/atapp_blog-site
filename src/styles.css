@@ -1,4 +1,8 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~froala-editor/css/themes/red.css';
+@import '~froala-editor/css/themes/gray.css';
+@import '~froala-editor/css/themes/royal.css';
+@import '~froala-editor/css/themes/dark.css';
 @import url('https://fonts.googleapis.com/css?family=Barlow');
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
 @import url('https://fonts.googleapis.com/css?family=Montserrat');

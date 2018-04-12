@@ -35,8 +35,7 @@ import {CookieService} from "angular2-cookie/core";
 import {CategoriesService} from "./services/categories/categories.service";
 import {FormatPipe} from "./pipes/format/format.pipe";
 import {RteComponent} from "./rte/rte.component";
-import {FroalaEditorModule,FroalaViewModule} from "angular-froala-wysiwyg";
-
+import {FroalaEditorModule, FroalaViewModule} from "angular-froala-wysiwyg";
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,8 +70,8 @@ import {FroalaEditorModule,FroalaViewModule} from "angular-froala-wysiwyg";
     HttpModule,
     MatTableModule,
     MatChipsModule,
-    FroalaEditorModule,
-    FroalaViewModule
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot()
   ],
   providers: [PostService, AuthService, CookieService, CategoriesService],
   bootstrap: [AppComponent]
