@@ -3,7 +3,7 @@
     <mat-card class="post" id="{{'post#' + post.post_id}}">
       <img src="http://material.angular.io/assets/img/examples/shiba2.jpg" mat-card-image>
       <mat-card-title>{{post.title}}</mat-card-title>
-      <mat-card-content style="white-space: pre-line;">{{post.content}}</mat-card-content>
+      <mat-card-content style="white-space: pre-line;" [froalaView]="post.content"></mat-card-content>
       <mat-card-actions>
         <ng-container *ngIf="userId == post.USERS_user_id">
           <button mat-raised-button color="primary" routerLink="/posts/{{post.post_id}}/edit">Editer</button>
@@ -27,10 +27,14 @@
              (ngModelChange)="inputChanged()">
       <mat-hint align="end">{{title.value.length}} / 50</mat-hint>
     </mat-form-field>
-    <mat-form-field>
+
+    <!--Normal editor-->
+    <!--<mat-form-field>
       <textarea [(ngModel)]="post.content" matInput placeholder="Contenu de l'article"
                 matTextareaAutosize (ngModelChange)="inputChanged()"></textarea>
-    </mat-form-field>
+    </mat-form-field>-->
+    <!-- Rich Text Editor -->
+    <div [froalaEditor] [(froalaModel)]="post.content" id="rte"></div>
 
     <mat-form-field class="edition_categories">
       <mat-chip-list #chipList>
